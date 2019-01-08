@@ -1,0 +1,70 @@
+-- CREATE DATABASE laravel_blog57 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE laravel_blog57;
+CREATE TABLE category(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    slug VARCHAR(100) UNIQUE NOT NULL,
+    parent int NULL DEFAULT '0',
+    ordering TINYINT(1) NULL DEFAULT '0',
+    status TINYINT(1) NULL DEFAULT '1',
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE post(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(200) NOT NULL,
+    slug VARCHAR(200) UNIQUE NOT NULL,
+    category_id int NOT NULL,
+    image VARCHAR(200) NULL,
+    content text NULL,
+    ordering TINYINT(1) NULL DEFAULT '0',
+    is_host TINYINT(1) NULL DEFAULT '0',
+    is_home TINYINT(1) NULL DEFAULT '0',
+    status TINYINT(1) NULL DEFAULT '1',
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE banner(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(200) NOT NULL,
+    link VARCHAR(200) NULL DEFAULT '#',
+    image VARCHAR(200) NOT NULL,
+    ordering TINYINT(1) NULL DEFAULT '0',
+    status TINYINT(1) NULL DEFAULT '1',
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER table post add foreign KEY FK_post_category_id(category_id) REFERENCES category(id);
+
+
+CREATE TABLE users(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(15) UNIQUE NOT NULL,
+    avatar VARCHAR(200) NULL,
+    password VARCHAR(100) NOT NULL,
+    bio text NULL,
+    status TINYINT(1) NULL DEFAULT '1',
+    gender TINYINT(1) NULL DEFAULT '1',
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE medias(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    full_name VARCHAR(200) NULL,
+    base_name VARCHAR(200) NULL,
+    alt VARCHAR(200) NULL,
+    base_link VARCHAR(200) NULL ,
+    full_link VARCHAR(200) NULL ,
+    upload_dir VARCHAR(50) NULL ,
+    ext VARCHAR(5) NULL,
+    file_size int NULL DEFAULT '0',
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,43 @@
+.grid-item{
+	padding: 5px;
+	position: relative;
+}
+.grid-item .file-item{
+	display: inline-block;
+	height: 120px;
+	overflow: hidden;
+}
+.tool-acction{
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: rgba(0, 0, 0, 0.6);
+	padding: 5px;
+	opacity: 0;
+	width: 100%;
+	transition: 0.75s opacity
+}
+.grid-item:hover .tool-acction{
+	opacity: 1
+}
+.tool-acction a{
+	margin: 0 2px;
+	padding: 0 2px
+}
+.media-index{
+	padding: 15px;
+}
+
+
+h1 { text-align: center; }
+
+#dropzone{
+	padding: 3px;
+	margin-bottom: 15px
+}
+
+ul.file-tree ul{
+	margin: 0;
+	padding: 0;
+}
